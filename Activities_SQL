@@ -1,0 +1,109 @@
+/*2. Write an SQL statement to show the names of users with first names all starting with the letter M and last names contain an e or u somewhere in the last name 
+
+select firstName, lastname
+from users
+where firstName like 'M%' and lastname like '%e%' or lastname like '%u%';
+*/
+
+
+
+/*3. Write an SQL statement to add a new row of data for a new user with any first name and your last name and a department of  IT Security Operations. Give it an ID of 153. You don't know anything else about it because you are waiting to hear about the salary, for example. Only add the info you know above. 
+
+
+insert into users (userID, username, firstName, lastName, department)
+values(153, 'sshun', 'Shun', 'Seki', 'IT Security Operations');
+
+*/
+
+
+/*4. Earlier, you added a new user with your last name in the IT Security Operations department with an ID of 153. You just heard the current salary will be 70000. Add that one piece of data to the existing record that is already in the database 
+
+*/
+
+
+
+/*5.What if the USERS table became corrupted and you needed to get rid of the table and all its data?  Write that SQL statement. 
+
+
+drop table users;
+*/
+
+
+
+
+/* 6.Show the smallest current salary for all the users. Call the column Smallest Salary For All Users and include spaces in the column name between the words 
+
+
+select MIN(annualBonus) as "smallest Salary For All Users" from users;
+*/
+
+
+/* 7.Show the departments and the number of users in each one and show the departments with the most users first followed by the name of the department in alphabetical order 
+write your incorrect code below (commented out)
+
+select department, COUNT(*)
+from users
+group by department
+order by COUNT(*) DESC, department ASC
+
+
+;
+
+*/
+
+
+
+/* 8.Show the departments and the number of users in each one and show the departments with the least number of users first and then in reverse alphabetical order by department. Lastly, only include departments with more than 4 users. 
+
+select department, count(*)
+from users
+group by department
+having COUNT(*)  > 4
+order by COUNT(*) ASC, department DESC;
+*/
+
+
+/* 9.Show the average security clearance level of the users in each one of our departments. Sort the results by the average security clearance level from highest to lowest, and then by department in reverse alphabetical order 
+
+select department, AVG(secClearance)
+from users
+group by department
+order by AVG(secClearance) DESC, department DESC;
+
+*/
+
+/* 10.Show the average annual bonus of the users in each one of our departments; however, only show the departments and associated average bonuses if the average bonus of the department is less than the average bonus for all of our users. 
+
+
+select department, AVG(annualBonus)
+From users
+group by department
+having AVG(annualBonus) < (select AVG(annualBonus) from users)
+;
+
+*/
+
+
+/*11.Show the average annual bonus of the users in each one of our departments; however; only include users with current salaries less than 150000. Also, only show the departments and associated average bonuses if the average bonus of the department is less than the average bonus for all of our users 
+
+select department , AVG(annualBonus)
+from users
+where currentSalary < 150000 
+group by department
+having AVG(annualBonus) < (select AVG(annualBonus) from users);
+
+*/
+
+/* 12.Show the average annual bonus of the users in each one of our departments; however, only include users with current salaries less than 150000. Also, only show the departments and associated average bonuses if the average annual bonus of the department is at least 4400. 
+
+
+select department, avg(annualBonus)
+from users
+where currentSalary < 150000
+group by department
+having avg(annualBonus) >= 4400;
+
+*/
+
+
+
